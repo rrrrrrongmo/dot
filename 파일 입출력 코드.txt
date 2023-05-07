@@ -1,0 +1,35 @@
+int main() {
+
+    FILE* fs;
+    fs = fopen("data.txt", "r");
+
+    point A[16];
+
+    for (int i = 0; i < MAX_SIZE; i++) {
+        if (i == 8) printf("\n");
+        fscanf(fs, "%d %d", &A[i].x, &A[i].y);
+        printf("[%d %d] ", A[i].x, A[i].y);
+    }
+    printf("\n\n");
+
+    fclose(fs);
+
+    fs = fopen("result.txt", "w");
+
+    quick(A, 0, MAX_SIZE);
+
+    for (int i = 0; i < MAX_SIZE; i++) {
+        if (i == 8) printf("\n");
+        printf("[%d %d] ", A[i].x, A[i].y);
+    }
+    printf("\n\n");
+
+    merge(A, 0, MAX_SIZE - 1);
+
+    printf("%.2f의 거리로 [%d %d]와 [%d %d]의 거리가 제일 적다.", min, min_p[0].x, min_p[0].y, min_p[1].x, min_p[1].y);
+    fprintf(fs, "%.2f의 거리로 [%d %d]와 [%d %d]의 거리가 제일 적다.", min, min_p[0].x, min_p[0].y, min_p[1].x, min_p[1].y);
+
+    fclose(fs);
+
+    return 0;
+}
